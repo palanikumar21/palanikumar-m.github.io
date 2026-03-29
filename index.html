@@ -27,6 +27,10 @@
   .hero{padding:5rem 0 4rem;border-bottom:1px solid var(--border);}
   .hero-inner{display:flex;align-items:center;gap:3rem;}
   .avatar{width:96px;height:96px;border-radius:50%;background:var(--accent-light);display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:600;color:var(--accent);flex-shrink:0;border:2px solid var(--border);}
+  .skills-layout{display:grid;grid-template-columns:1fr 220px;gap:2.5rem;align-items:start;}
+  .profile-photo{width:100%;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);}
+  .profile-photo img{width:100%;height:320px;object-fit:cover;object-position:top;display:block;}
+  @media(max-width:640px){.skills-layout{grid-template-columns:1fr;} .profile-photo{max-width:200px;margin:0 auto;}}
   .hero h1{font-size:2rem;font-weight:600;letter-spacing:-.5px;margin-bottom:.25rem;}
   .hero .role{font-size:1rem;color:var(--accent);font-weight:500;margin-bottom:.75rem;}
   .hero .bio{font-size:.95rem;color:var(--muted);max-width:540px;}
@@ -117,42 +121,35 @@
   <section id="skills">
     <div class="section-label">Expertise</div>
     <div class="section-title">Skills &amp; Technologies</div>
-    <div class="skills-grid">
-      <div class="skill-group">
-        <h4>Cloud Platforms</h4>
-        <div class="tags">
-          <span class="tag">AWS</span><span class="tag">GCP</span><span class="tag">ECS</span>
+    <div class="skills-layout">
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h4>Cloud Platforms</h4>
+          <div class="tags"><span class="tag">AWS</span><span class="tag">GCP</span><span class="tag">ECS</span></div>
+        </div>
+        <div class="skill-group">
+          <h4>Infrastructure as Code</h4>
+          <div class="tags"><span class="tag">Terraform</span><span class="tag">Ansible</span></div>
+        </div>
+        <div class="skill-group">
+          <h4>Containers &amp; Orchestration</h4>
+          <div class="tags"><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Microservices</span></div>
+        </div>
+        <div class="skill-group">
+          <h4>CI/CD &amp; Version Control</h4>
+          <div class="tags"><span class="tag">Jenkins</span><span class="tag">GitHub Actions</span><span class="tag">GitHub</span><span class="tag">Bitbucket</span></div>
+        </div>
+        <div class="skill-group">
+          <h4>Observability &amp; Data</h4>
+          <div class="tags"><span class="tag">Grafana</span><span class="tag">Prometheus</span><span class="tag">Elasticsearch</span><span class="tag">Kibana</span><span class="tag">Clickhouse</span><span class="tag">Kafka</span></div>
+        </div>
+        <div class="skill-group">
+          <h4>Scripting &amp; Backend</h4>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Shell Script</span><span class="tag">Linux</span><span class="tag">Data Pipeline</span><span class="tag">Agile</span></div>
         </div>
       </div>
-      <div class="skill-group">
-        <h4>Infrastructure as Code</h4>
-        <div class="tags">
-          <span class="tag">Terraform</span><span class="tag">Ansible</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h4>Containers &amp; Orchestration</h4>
-        <div class="tags">
-          <span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Microservices</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h4>CI/CD &amp; Version Control</h4>
-        <div class="tags">
-          <span class="tag">Jenkins</span><span class="tag">GitHub Actions</span><span class="tag">GitHub</span><span class="tag">Bitbucket</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h4>Observability &amp; Data</h4>
-        <div class="tags">
-          <span class="tag">Grafana</span><span class="tag">Prometheus</span><span class="tag">Elasticsearch</span><span class="tag">Kibana</span><span class="tag">Clickhouse</span><span class="tag">Kafka</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h4>Scripting &amp; Backend</h4>
-        <div class="tags">
-          <span class="tag">Python</span><span class="tag">Shell Script</span><span class="tag">Linux</span><span class="tag">Data Pipeline</span><span class="tag">Agile</span>
-        </div>
+      <div class="profile-photo">
+        <img src="photo.jpg" alt="M. Palanikumar"/>
       </div>
     </div>
   </section>
