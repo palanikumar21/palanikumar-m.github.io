@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>M. Palanikumar – Cloud & DevOps Engineer</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#0a1a14;--bg2:#0f2318;--bg3:#122b1c;
+  --teal:#00c9a7;--green:#4ade80;--accent:#00e5c0;
+  --text:#e8f5f0;--muted:#7eb8a4;--border:rgba(0,201,167,0.15);
+  --card:rgba(15,35,24,0.85);--radius:14px;
+}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;}
+a{color:var(--teal);text-decoration:none;}
+a:hover{color:var(--accent);}
+
+/* Canvas bg */
+#geo-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.18;}
+
+/* Nav */
+nav{background:rgba(10,26,20,0.92);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);}
+.nav-inner{max-width:980px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:62px;}
+.logo{font-size:.95rem;font-weight:700;color:var(--teal);letter-spacing:1px;text-transform:uppercase;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-size:.8rem;color:var(--muted);transition:color .2s;text-transform:uppercase;letter-spacing:.8px;}
+.nav-links a:hover{color:var(--teal);}
+
+.container{max-width:980px;margin:0 auto;padding:0 2rem;position:relative;z-index:1;}
+
+/* Hero */
+.hero{padding:5.5rem 0 4.5rem;border-bottom:1px solid var(--border);}
+.hero-inner{display:flex;align-items:center;gap:3rem;flex-wrap:wrap;}
+.avatar{width:100px;height:100px;border-radius:50%;flex-shrink:0;border:2.5px solid var(--teal);overflow:hidden;box-shadow:0 0 24px rgba(0,201,167,0.35);}
+.avatar img{width:100%;height:100%;object-fit:cover;object-position:top;}
+.badge{display:inline-block;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--teal);border:1px solid var(--border);padding:.25rem .75rem;border-radius:20px;margin-bottom:.75rem;background:rgba(0,201,167,0.07);}
+.hero h1{font-size:2.2rem;font-weight:700;letter-spacing:-.5px;margin-bottom:.2rem;background:linear-gradient(135deg,var(--text) 40%,var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero .role{font-size:.95rem;color:var(--teal);font-weight:500;margin-bottom:.75rem;}
+.hero .bio{font-size:.9rem;color:var(--muted);max-width:520px;line-height:1.8;}
+.hero-links{display:flex;gap:.75rem;margin-top:1.5rem;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;padding:.5rem 1.2rem;border-radius:8px;border:1px solid var(--border);background:rgba(0,201,167,0.07);color:var(--text);transition:all .2s;font-weight:500;}
+.btn:hover{background:rgba(0,201,167,0.15);border-color:var(--teal);color:var(--teal);}
+.btn-primary{background:var(--teal);color:#0a1a14;border-color:var(--teal);font-weight:700;}
+.btn-primary:hover{background:var(--accent);border-color:var(--accent);color:#0a1a14;}
+
+/* Sections */
+section{padding:4rem 0;border-bottom:1px solid var(--border);}
+section:last-child{border-bottom:none;}
+.section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:2px;color:var(--teal);font-weight:700;margin-bottom:.5rem;}
+.section-title{font-size:1.5rem;font-weight:700;margin-bottom:2rem;letter-spacing:-.3px;color:var(--text);}
+
+/* Skills */
+.skills-layout{display:grid;grid-template-columns:1fr 210px;gap:2.5rem;align-items:start;}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.85rem;}
+.skill-group{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem;transition:border-color .2s,transform .2s;}
+.skill-group:hover{border-color:rgba(0,201,167,0.4);transform:translateY(-2px);}
+.skill-group h4{font-size:.68rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:.65rem;}
+.tags{display:flex;flex-wrap:wrap;gap:.35rem;}
+.tag{font-size:.72rem;background:rgba(0,201,167,0.1);color:var(--teal);padding:.22rem .6rem;border-radius:20px;font-weight:500;border:1px solid rgba(0,201,167,0.2);}
+.profile-photo{border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);box-shadow:0 0 30px rgba(0,201,167,0.15);}
+.profile-photo img{width:100%;height:310px;object-fit:cover;object-position:top;display:block;}
+
+/* Certs */
+.certs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1rem;}
+.cert-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;display:flex;gap:.85rem;align-items:flex-start;transition:border-color .2s,transform .2s;}
+.cert-card:hover{border-color:rgba(0,201,167,0.4);transform:translateY(-2px);}
+.cert-icon{width:40px;height:40px;border-radius:8px;background:rgba(0,201,167,0.12);display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:800;color:var(--teal);flex-shrink:0;border:1px solid rgba(0,201,167,0.25);letter-spacing:.5px;}
+.cert-card h4{font-size:.8rem;font-weight:600;line-height:1.4;margin-bottom:.2rem;color:var(--text);}
+.cert-card span{font-size:.72rem;color:var(--muted);}
+
+/* Projects */
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;transition:border-color .2s,transform .2s;position:relative;overflow:hidden;}
+.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--green));}
+.project-card:hover{border-color:rgba(0,201,167,0.4);transform:translateY(-3px);}
+.project-card h3{font-size:1.05rem;font-weight:700;margin-bottom:.6rem;color:var(--text);}
+.project-card p{font-size:.875rem;color:var(--muted);line-height:1.8;margin-bottom:1.1rem;}
+.project-tags{display:flex;flex-wrap:wrap;gap:.4rem;}
+.project-tag{font-size:.7rem;background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);color:var(--green);padding:.2rem .6rem;border-radius:20px;}
+
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;}
+.contact-item{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;display:flex;gap:.85rem;align-items:center;transition:border-color .2s,transform .2s;}
+.contact-item:hover{border-color:rgba(0,201,167,0.4);transform:translateY(-2px);}
+.contact-icon{width:38px;height:38px;border-radius:8px;background:rgba(0,201,167,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid rgba(0,201,167,0.2);}
+.contact-icon svg{width:16px;height:16px;stroke:var(--teal);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.contact-item div p{font-size:.65rem;color:var(--muted);margin-bottom:.15rem;text-transform:uppercase;letter-spacing:1px;}
+.contact-item div a{font-size:.82rem;font-weight:500;color:var(--text);}
+.contact-item div a:hover{color:var(--teal);}
+
+/* Stats bar */
+.stats{display:flex;gap:2.5rem;flex-wrap:wrap;margin-top:2rem;}
+.stat{text-align:center;}
+.stat-num{font-size:1.6rem;font-weight:700;color:var(--teal);display:block;}
+.stat-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+
+footer{background:var(--bg2);border-top:1px solid var(--border);text-align:center;padding:1.5rem;font-size:.78rem;color:var(--muted);}
+footer span{color:var(--teal);}
+
+@media(max-width:640px){.skills-layout{grid-template-columns:1fr;}.profile-photo{max-width:200px;margin:0 auto;}.hero h1{font-size:1.6rem;}}
+</style>
+</head>
+<body>
+
+<canvas id="geo-canvas"></canvas>
+
+<nav>
+  <div class="nav-inner">
+    <span class="logo">Palanikumar M.</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certifications">Certs</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <!-- Hero -->
+  <section class="hero" id="about">
+    <div class="hero-inner">
+      <div class="avatar">
+        <img src="palani.jpeg" alt="M. Palanikumar"/>
+      </div>
+      <div>
+        <div class="badge">Available for opportunities</div>
+        <h1>M. Palanikumar</h1>
+        <p class="role">Cloud Architect Associate · DevOps &amp; SRE Engineer</p>
+        <p class="bio">Passionate Cloud &amp; DevOps Engineer with 3 years of experience designing, automating, and scaling infrastructure across AWS and GCP. Certified in four AWS domains with hands-on expertise in container orchestration, CI/CD pipelines, observability, and cross-cloud architecture.</p>
+        <div class="stats">
+          <div class="stat"><span class="stat-num">3+</span><span class="stat-label">Years Exp.</span></div>
+          <div class="stat"><span class="stat-num">4x</span><span class="stat-label">AWS Certified</span></div>
+          <div class="stat"><span class="stat-num">20+</span><span class="stat-label">Technologies</span></div>
+        </div>
+        <div class="hero-links">
+          <a class="btn btn-primary" href="mailto:palanikumarmech21@gmail.com">Get in touch</a>
+          <a class="btn" href="https://linkedin.com/in/palanikumar-m" target="_blank">LinkedIn ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <div class="section-label">Expertise</div>
+    <div class="section-title">Skills &amp; Technologies</div>
+    <div class="skills-layout">
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h4>Cloud Platforms</h4>
+          <div class="tags"><span class="tag">AWS</span><span class="tag">GCP</span><span class="tag">ECS</span></div>
+        </div>
+        <div class="skill-group">
+          <h4>Infrastructure as Code</h4>
+          <div class="tags"><span class="tag">Terraform</span><span class="tag">Ansible</span></div>
+        </div>
+        <div class="skill-group">
+          <h4>Containers &amp; Orchestration</h4>
+          <div class="tags"><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Microservices</span></div>
+        </div>
+        <div class="skill-group">
+          <h4>CI/CD &amp; Version Control</h4>
+          <div class="tags"><span class="tag">Jenkins</span><span class="tag">GitHub Actions</span><span class="tag">GitHub</span><span class="tag">Bitbucket</span></div>
+        </div>
+        <div class="skill-group">
+          <h4>Observability &amp; Data</h4>
+          <div class="tags"><span class="tag">Grafana</span><span class="tag">Prometheus</span><span class="tag">Elasticsearch</span><span class="tag">Kibana</span><span class="tag">Clickhouse</span><span class="tag">Kafka</span></div>
+        </div>
+        <div class="skill-group">
+          <h4>Scripting &amp; Backend</h4>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Shell Script</span><span class="tag">Linux</span><span class="tag">Data Pipeline</span><span class="tag">Agile</span></div>
+        </div>
+      </div>
+      <div class="profile-photo">
+        <img src="photo.jpeg" alt="M. Palanikumar"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <div class="section-label">Work</div>
+    <div class="section-title">Projects</div>
+    <div class="project-card">
+      <h3>Cross-Cloud Database Migration Infrastructure</h3>
+      <p>Developed a seamless database migration template between AWS Aurora PostgreSQL and GCP Cloud SQL PostgreSQL. Leveraged an IPsec VPN tunnel with BGP routing for secure, reliable cross-cloud connectivity — enabling zero-disruption data transfer between cloud providers.</p>
+      <div class="project-tags">
+        <span class="project-tag">AWS Aurora</span>
+        <span class="project-tag">GCP Cloud SQL</span>
+        <span class="project-tag">PostgreSQL</span>
+        <span class="project-tag">IPsec VPN</span>
+        <span class="project-tag">BGP</span>
+        <span class="project-tag">Terraform</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certifications">
+    <div class="section-label">Credentials</div>
+    <div class="section-title">AWS Certifications</div>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-icon">AWS</div>
+        <div><h4>Cloud Practitioner</h4><span>CLF-C01</span></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">AWS</div>
+        <div><h4>SysOps Administrator</h4><span>SOA-C02</span></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">AWS</div>
+        <div><h4>DevOps Engineer – Professional</h4><span>DOP-C02</span></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">AWS</div>
+        <div><h4>Solutions Architect – Associate</h4><span>SAA-C03</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="section-label">Reach out</div>
+    <div class="section-title">Contact</div>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        </div>
+        <div><p>Email</p><a href="mailto:palanikumarmech21@gmail.com">palanikumarmech21@gmail.com</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </div>
+        <div><p>LinkedIn</p><a href="https://linkedin.com/in/palanikumar-m" target="_blank">linkedin.com/in/palanikumar-m</a></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  Designed &amp; built by <span>M. Palanikumar</span> · Cloud &amp; DevOps Engineer
+</footer>
+
+<script>
+const canvas = document.getElementById('geo-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, nodes=[], edges=[], tick=0;
+const TEAL='#00c9a7', GREEN='#4ade80';
+
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;init();}
+
+function init(){
+  nodes=[];edges=[];
+  const count=Math.floor((W*H)/22000);
+  for(let i=0;i<count;i++){
+    nodes.push({
+      x:Math.random()*W, y:Math.random()*H,
+      vx:(Math.random()-.5)*.4, vy:(Math.random()-.5)*.4,
+      r:Math.random()*2+1,
+      color:Math.random()>.5?TEAL:GREEN
+    });
+  }
+}
+
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  tick++;
+
+  // Move nodes
+  nodes.forEach(n=>{
+    n.x+=n.vx; n.y+=n.vy;
+    if(n.x<0||n.x>W) n.vx*=-1;
+    if(n.y<0||n.y>H) n.vy*=-1;
+  });
+
+  // Draw edges between close nodes
+  for(let i=0;i<nodes.length;i++){
+    for(let j=i+1;j<nodes.length;j++){
+      const dx=nodes[i].x-nodes[j].x, dy=nodes[i].y-nodes[j].y;
+      const dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<130){
+        ctx.beginPath();
+        ctx.moveTo(nodes[i].x,nodes[i].y);
+        ctx.lineTo(nodes[j].x,nodes[j].y);
+        ctx.strokeStyle=`rgba(0,201,167,${(1-dist/130)*0.5})`;
+        ctx.lineWidth=.6;
+        ctx.stroke();
+      }
+    }
+  }
+
+  // Draw nodes
+  nodes.forEach(n=>{
+    ctx.beginPath();
+    ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
+    ctx.fillStyle=n.color;
+    ctx.fill();
+  });
+
+  // Draw floating hexagons
+  if(tick%180===0){
+    nodes.push({
+      x:Math.random()*W, y:Math.random()*H,
+      vx:(Math.random()-.5)*.4, vy:(Math.random()-.5)*.4,
+      r:Math.random()*2+1,
+      color:Math.random()>.5?TEAL:GREEN
+    });
+    if(nodes.length>80) nodes.shift();
+  }
+
+  requestAnimationFrame(draw);
+}
+
+window.addEventListener('resize',resize);
+resize();
+draw();
+</script>
+</body>
+</html>
